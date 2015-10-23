@@ -20,8 +20,27 @@ public class Main extends javax.swing.JFrame {
         deviceStatus.setText(acao.getResposta());
 
         acao.limparBuffer();
-        
-        sistema.setText(System.getProperty("os.name"));
+
+        //sistema.setText(System.getProperty("os.name"));
+
+    }
+
+    void findDevice() {
+
+        //Executa o processo paralelo
+        new Thread() {
+            @Override
+            public void run() {
+
+                buscar.setVisible(rootPaneCheckingEnabled);
+                
+                acao.comando("adb wait-for-device", false);
+                statusDevice();
+                
+                buscar.dispose();
+
+            }
+        }.start();
 
     }
 
@@ -29,6 +48,14 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buscar = new javax.swing.JFrame();
+        jLabel2 = new javax.swing.JLabel();
+        adbWifi = new javax.swing.JFrame();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        enderecoIp = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtTerminal = new javax.swing.JTextArea();
@@ -46,6 +73,95 @@ public class Main extends javax.swing.JFrame {
         wifiCon = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
+
+        buscar.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        buscar.setMinimumSize(new java.awt.Dimension(250, 250));
+
+        jLabel2.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Buscando Dispositivo");
+
+        javax.swing.GroupLayout buscarLayout = new javax.swing.GroupLayout(buscar.getContentPane());
+        buscar.getContentPane().setLayout(buscarLayout);
+        buscarLayout.setHorizontalGroup(
+            buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        buscarLayout.setVerticalGroup(
+            buscarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(buscarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(222, Short.MAX_VALUE))
+        );
+
+        adbWifi.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        adbWifi.setAlwaysOnTop(true);
+        adbWifi.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        adbWifi.setMinimumSize(new java.awt.Dimension(217, 135));
+        adbWifi.setPreferredSize(new java.awt.Dimension(223, 135));
+        adbWifi.setResizable(false);
+        adbWifi.setType(java.awt.Window.Type.UTILITY);
+
+        jLabel4.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("ADB WiFi");
+
+        enderecoIp.setMinimumSize(new java.awt.Dimension(120, 27));
+        enderecoIp.setRequestFocusEnabled(false);
+
+        jLabel3.setText("Endereço IP:");
+
+        jButton1.setText("Conectar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(enderecoIp, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enderecoIp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout adbWifiLayout = new javax.swing.GroupLayout(adbWifi.getContentPane());
+        adbWifi.getContentPane().setLayout(adbWifiLayout);
+        adbWifiLayout.setHorizontalGroup(
+            adbWifiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        adbWifiLayout.setVerticalGroup(
+            adbWifiLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Android Actions");
@@ -220,15 +336,32 @@ public class Main extends javax.swing.JFrame {
 
     private void buscaDeviceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscaDeviceActionPerformed
 
-        new WaitDevice().setVisible(true);
-        
+        findDevice();
+
     }//GEN-LAST:event_buscaDeviceActionPerformed
 
     private void wifiConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wifiConActionPerformed
 
-        new AdbConnect().setVisible(true);
-        
+       adbWifi.setVisible(rootPaneCheckingEnabled);
+
     }//GEN-LAST:event_wifiConActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        new Thread() {
+            @Override
+            public void run() {
+
+                acao.comando("adb connect " + enderecoIp.getText(), false);
+                acao.comando("adb wait-for-device", false);
+                
+                statusDevice();
+                adbWifi.dispose();
+
+            }
+        }.start();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -255,9 +388,16 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adbDevices;
+    private javax.swing.JFrame adbWifi;
     private javax.swing.JMenuItem buscaDevice;
+    private javax.swing.JFrame buscar;
     private javax.swing.JLabel deviceStatus;
+    private javax.swing.JTextField enderecoIp;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -265,6 +405,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox reboot;
