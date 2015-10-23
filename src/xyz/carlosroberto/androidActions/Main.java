@@ -20,9 +20,7 @@ public class Main extends javax.swing.JFrame {
         deviceStatus.setText(acao.getResposta());
 
         acao.limparBuffer();
-
-        //sistema.setText(System.getProperty("os.name"));
-
+        
     }
 
     void findDevice() {
@@ -33,10 +31,10 @@ public class Main extends javax.swing.JFrame {
             public void run() {
 
                 buscar.setVisible(rootPaneCheckingEnabled);
-                
+
                 acao.comando("adb wait-for-device", false);
                 statusDevice();
-                
+
                 buscar.dispose();
 
             }
@@ -65,7 +63,6 @@ public class Main extends javax.swing.JFrame {
         reboot = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         deviceStatus = new javax.swing.JLabel();
-        sistema = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -102,7 +99,6 @@ public class Main extends javax.swing.JFrame {
         adbWifi.setAlwaysOnTop(true);
         adbWifi.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         adbWifi.setMinimumSize(new java.awt.Dimension(217, 135));
-        adbWifi.setPreferredSize(new java.awt.Dimension(223, 135));
         adbWifi.setResizable(false);
         adbWifi.setType(java.awt.Window.Type.UTILITY);
 
@@ -205,12 +201,10 @@ public class Main extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(adbDevices)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(reboot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(sistema))
+                        .addComponent(reboot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(deviceStatus))
-                .addContainerGap(363, Short.MAX_VALUE))
+                .addContainerGap(381, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,8 +212,7 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(adbDevices)
-                    .addComponent(reboot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sistema))
+                    .addComponent(reboot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -342,25 +335,25 @@ public class Main extends javax.swing.JFrame {
 
     private void wifiConActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wifiConActionPerformed
 
-       adbWifi.setVisible(rootPaneCheckingEnabled);
+        adbWifi.setVisible(rootPaneCheckingEnabled);
 
     }//GEN-LAST:event_wifiConActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         new Thread() {
             @Override
             public void run() {
 
                 acao.comando("adb connect " + enderecoIp.getText(), false);
                 acao.comando("adb wait-for-device", false);
-                
+
                 statusDevice();
                 adbWifi.dispose();
 
             }
         }.start();
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {
@@ -409,7 +402,6 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JComboBox reboot;
-    private javax.swing.JLabel sistema;
     private javax.swing.JTextArea txtTerminal;
     private javax.swing.JMenuItem wifiCon;
     // End of variables declaration//GEN-END:variables
