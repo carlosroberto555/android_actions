@@ -53,7 +53,7 @@ public class Manipulacao {
 
     public String ler() {
 
-        String texto = "";
+        StringBuilder texto = new StringBuilder();
         String linha;
 
         try {
@@ -61,7 +61,7 @@ public class Manipulacao {
             try (FileReader fr = new FileReader(arquivo); BufferedReader br = new BufferedReader(fr)) {
 
                 while ((linha = br.readLine()) != null) {
-                    texto += linha + "\n";
+                    texto.append(linha).append("\n");
                 }
 
             }
@@ -70,7 +70,7 @@ public class Manipulacao {
             Logger.getLogger(Manipulacao.class.getName()).log(Level.SEVERE, null, e);
         }
 
-        return texto;
+        return texto.toString();
 
     }
 
